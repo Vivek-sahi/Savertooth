@@ -4,7 +4,6 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { useWizard } from "@/context/WizardContext";
-import CurrencySwitch from "@/components/shared/CurrencySwitch";
 import SavingsHero from "@/components/results/SavingsHero";
 import SuggestionsPanel from "@/components/results/SuggestionsPanel";
 import PriceDropAlert from "@/components/retention/PriceDropAlert";
@@ -40,7 +39,7 @@ export default function ResultsPage() {
                 </svg>
                 Edit stack
               </button>
-              <CurrencySwitch />
+              
             </div>
 
             <div className="space-y-8">

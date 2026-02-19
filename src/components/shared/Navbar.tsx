@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import SavertoothLogo from "./SavertoothLogo";
+import CurrencySwitch from "./CurrencySwitch";
 
 const SHARE_TEXT = "Found this tool that shows you hidden perks in your phone/internet plans and where you're overpaying on subscriptions. Worth a look:";
 const SHARE_URL = "https://savertooth.vercel.app";
@@ -46,6 +47,7 @@ export default function Navbar() {
         </Link>
 
         <div className="flex items-center gap-6">
+          <CurrencySwitch />
           <button
             onClick={handleSpread}
             className="rounded-xl border-2 border-[var(--border-soft)] bg-white/80 px-4 py-2 text-sm font-semibold text-[var(--text-secondary)] transition-all hover:border-[var(--border-card)] hover:bg-white active:scale-[0.98]"

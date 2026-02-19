@@ -204,7 +204,7 @@ export default function SavertoothLogo({
           className="text-2xl tracking-tight text-[var(--text-primary)]"
           style={{ fontFamily: "var(--font-brand)", fontWeight: 800 }}
         >
-          savertooth
+          Savertooth
         </span>
       )}
     </div>
@@ -238,7 +238,7 @@ export function SavertoothLogoDark({
           className="text-2xl tracking-tight text-white"
           style={{ fontFamily: "var(--font-brand)", fontWeight: 800 }}
         >
-          savertooth
+          Savertooth
         </span>
       )}
     </div>

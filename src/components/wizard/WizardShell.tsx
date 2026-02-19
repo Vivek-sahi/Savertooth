@@ -6,7 +6,6 @@ import { useRouter } from "next/navigation";
 import { useWizard } from "@/context/WizardContext";
 import { calculateSavings } from "@/lib/savings";
 import ProgressBar from "@/components/shared/ProgressBar";
-import CurrencySwitch from "@/components/shared/CurrencySwitch";
 import SubscriptionPicker from "./SubscriptionPicker";
 import ServicePicker from "./ServicePicker";
 import StackReview from "./StackReview";
@@ -153,15 +152,6 @@ export default function WizardShell() {
   return (
     <div className="min-h-screen pt-20">
       <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6">
-        <div className="mb-4 flex items-center justify-end">
-          <div className="flex items-center gap-3">
-            <CurrencySwitch />
-            <span className="text-sm font-semibold text-[var(--text-muted)]">
-              Step {state.step} of {STEPS.length}
-            </span>
-          </div>
-        </div>
-
         <div className="mb-8">
           <ProgressBar
             currentStep={state.step}
