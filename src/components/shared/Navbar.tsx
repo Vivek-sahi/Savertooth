@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import SavertoothLogo from "./SavertoothLogo";
 
 export default function Navbar() {
@@ -16,10 +15,7 @@ export default function Navbar() {
   }, []);
 
   return (
-    <motion.nav
-      initial={{ y: -20, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
+    <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
           ? "bg-white/90 backdrop-blur-xl shadow-[0_2px_20px_rgba(0,0,0,0.06)]"
@@ -38,6 +34,6 @@ export default function Navbar() {
           Save my money
         </Link>
       </div>
-    </motion.nav>
+    </nav>
   );
 }
