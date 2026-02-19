@@ -1,6 +1,6 @@
-export function generateShareText(monthlySavings: number, score: number): string {
-  if (monthlySavings > 0) {
-    return `I just found out I can save $${monthlySavings.toFixed(0)}/month on my subscriptions with Savertooth! My optimization score: ${score}/100. Check yours:`;
+export function generateShareText(formattedSavings: string, score: number): string {
+  if (formattedSavings) {
+    return `I just found out I can save ${formattedSavings}/month on my subscriptions with Savertooth! My optimization score: ${score}/100. Check yours:`;
   }
   return `My subscription optimization score is ${score}/100 — I'm already a smart spender! Check yours with Savertooth:`;
 }

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { generateShareText, shareToTwitter, copyShareLink } from "@/lib/sharing";
+import { useCurrency } from "@/context/CurrencyContext";
 
 interface ShareSectionProps {
   monthlySavings: number;
@@ -11,7 +12,8 @@ interface ShareSectionProps {
 
 export default function ShareSection({ monthlySavings, score }: ShareSectionProps) {
   const [copied, setCopied] = useState(false);
-  const text = generateShareText(monthlySavings, score);
+  const { format } = useCurrency();
+  const text = generateShareText(monthlySavings > 0 ? format(monthlySavings) : "", score);
 
   const handleCopy = async () => {
     await copyShareLink(text);
