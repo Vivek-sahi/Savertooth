@@ -41,9 +41,12 @@ export default function PriceInput({
     : activePlan?.monthlyPrice ?? 0;
 
   useEffect(() => {
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
     document.body.style.overflow = "hidden";
+    document.body.style.paddingRight = `${scrollbarWidth}px`;
     return () => {
       document.body.style.overflow = "";
+      document.body.style.paddingRight = "";
     };
   }, []);
 
@@ -66,7 +69,7 @@ export default function PriceInput({
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="absolute inset-0 bg-black/30 backdrop-blur-sm"
+        className="absolute inset-0 bg-black/30"
         onClick={onCancel}
       />
 
