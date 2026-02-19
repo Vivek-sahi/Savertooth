@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { useWizard } from "@/context/WizardContext";
 import { useCurrency } from "@/context/CurrencyContext";
 import CurrencySwitch from "@/components/shared/CurrencySwitch";
@@ -15,80 +15,23 @@ export default function ResultsPage() {
   const { state } = useWizard();
   const { format } = useCurrency();
   const router = useRouter();
-  const [analyzing, setAnalyzing] = useState(true);
-  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     if (!state.results) {
       router.push("/analyze");
-      return;
     }
-
-    const steps = [
-      { delay: 300, progress: 15 },
-      { delay: 700, progress: 35 },
-      { delay: 1100, progress: 58 },
-      { delay: 1500, progress: 79 },
-      { delay: 1900, progress: 94 },
-      { delay: 2300, progress: 100 },
-    ];
-
-    const timers = steps.map((step) =>
-      setTimeout(() => setProgress(step.progress), step.delay)
-    );
-
-    const doneTimer = setTimeout(() => setAnalyzing(false), 2600);
-
-    return () => {
-      timers.forEach(clearTimeout);
-      clearTimeout(doneTimer);
-    };
   }, [state.results, router]);
 
   if (!state.results) return null;
 
   return (
     <div className="min-h-screen pt-20">
-      <AnimatePresence mode="wait">
-        {analyzing ? (
-          <motion.div
-            key="analyzing"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="flex min-h-[80vh] flex-col items-center justify-center px-6"
-          >
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-              className="mb-8 h-14 w-14 rounded-2xl border-4 border-[var(--border-soft)] border-t-[var(--accent)]"
-            />
-            <h2 className="mb-2 text-2xl font-extrabold text-[var(--text-primary)]">
-              Analyzing your stack...
-            </h2>
-            <p className="mb-6 text-[var(--text-secondary)]">
-              Comparing against 47,000+ plans
-            </p>
-            <div className="w-64">
-              <div className="h-2.5 w-full rounded-full bg-[var(--border-soft)]">
-                <motion.div
-                  className="h-full rounded-full bg-[var(--accent)]"
-                  animate={{ width: `${progress}%` }}
-                  transition={{ duration: 0.3, ease: "easeOut" }}
-                />
-              </div>
-              <p className="mt-2 text-center text-sm font-semibold text-[var(--text-muted)]">
-                {progress}%
-              </p>
-            </div>
-          </motion.div>
-        ) : (
-          <motion.div
-            key="results"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="mx-auto max-w-3xl px-4 py-8 sm:px-6"
-          >
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.4 }}
+        className="mx-auto max-w-3xl px-4 py-8 sm:px-6"
+      >
             <div className="mb-6 flex items-center justify-between">
               <button
                 onClick={() => router.push("/analyze")}
@@ -144,9 +87,7 @@ export default function ResultsPage() {
                 score={state.results.score}
               />
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      </motion.div>
     </div>
   );
 }
