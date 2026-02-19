@@ -24,18 +24,18 @@ export default function ShareSection({ monthlySavings, score }: ShareSectionProp
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.7 }}
-      className="rounded-2xl border border-slate-200 bg-white p-6"
+      className="rounded-3xl border-2 border-[var(--border-soft)] bg-white p-6 shadow-[0_2px_12px_rgba(0,0,0,0.03)]"
     >
-      <h3 className="mb-2 text-lg font-bold text-slate-800">
+      <h3 className="mb-2 text-base font-extrabold text-[var(--text-primary)]">
         Share your results
       </h3>
-      <p className="mb-4 text-sm text-slate-500">
+      <p className="mb-4 text-sm text-[var(--text-secondary)]">
         {monthlySavings > 0
           ? "Help your friends save too — every person who joins makes group deals cheaper."
           : "Challenge your friends to beat your optimization score."}
       </p>
 
-      <div className="mb-4 rounded-lg bg-slate-50 p-3 text-sm text-slate-600">
+      <div className="mb-4 rounded-2xl border-2 border-[var(--border-soft)] bg-[var(--bg-warm)] p-3 text-sm text-[var(--text-secondary)]">
         {text}
       </div>
 
@@ -44,7 +44,7 @@ export default function ShareSection({ monthlySavings, score }: ShareSectionProp
           href={shareToTwitter(text)}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-2 rounded-lg bg-slate-900 px-4 py-2.5 text-sm font-medium text-white hover:bg-slate-800 transition-colors"
+          className="flex items-center gap-2 rounded-xl bg-[var(--bg-dark)] px-4 py-2.5 text-sm font-bold text-white transition-all hover:opacity-90"
         >
           <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
             <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
@@ -54,11 +54,14 @@ export default function ShareSection({ monthlySavings, score }: ShareSectionProp
 
         <button
           onClick={handleCopy}
-          className="flex items-center gap-2 rounded-lg border border-slate-200 px-4 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-50 transition-colors"
+          className="flex items-center gap-2 rounded-xl border-2 border-[var(--border-soft)] px-4 py-2.5 text-sm font-bold text-[var(--text-secondary)] transition-all hover:bg-[var(--bg-warm)]"
         >
           {copied ? (
             <>
-              <span className="text-green-500">✓</span> Copied!
+              <svg className="h-4 w-4" style={{ color: "var(--crayon-teal)" }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+              </svg>
+              Copied
             </>
           ) : (
             <>

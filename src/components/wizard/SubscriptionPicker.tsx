@@ -57,10 +57,10 @@ export default function SubscriptionPicker() {
         animate={{ opacity: 1, y: 0 }}
         className="mb-6"
       >
-        <h2 className="mb-2 text-2xl font-bold text-slate-800">
+        <h2 className="mb-2 text-2xl font-extrabold text-[var(--text-primary)]">
           Pick your subscriptions
         </h2>
-        <p className="text-slate-500">
+        <p className="text-[var(--text-secondary)]">
           Select everything you&apos;re currently paying for. We&apos;ll find where you can
           save.
         </p>
@@ -71,10 +71,10 @@ export default function SubscriptionPicker() {
           <button
             key={cat.key}
             onClick={() => setActiveCategory(cat.key)}
-            className={`rounded-full px-4 py-1.5 text-sm font-medium transition-all ${
+            className={`rounded-xl px-4 py-1.5 text-sm font-semibold transition-all ${
               activeCategory === cat.key
-                ? "bg-slate-800 text-white"
-                : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                ? "bg-[var(--text-primary)] text-white"
+                : "bg-white text-[var(--text-secondary)] border-2 border-[var(--border-soft)] hover:border-[var(--border-card)]"
             }`}
           >
             {cat.label}
@@ -82,38 +82,31 @@ export default function SubscriptionPicker() {
         ))}
       </div>
 
-      <LogoGrid items={filtered} selectedIds={selectedIds} onToggle={handleToggle} />
+      <LogoGrid items={filtered} selectedIds={selectedIds} onToggle={handleToggle} configuringId={configuringId} />
 
       <AnimatePresence>
         {configuringSub && !selectedIds.has(configuringSub.id) && (
-          <motion.div
+          <PriceInput
             key="price-input"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="mt-6 overflow-hidden"
-          >
-            <PriceInput
-              itemName={configuringSub.name}
-              itemLogo={configuringSub.logo}
-              itemImage={configuringSub.image}
-              itemColor={configuringSub.color}
-              plans={configuringSub.plans}
-              onConfirm={(planId, price) => {
-                dispatch({
-                  type: "ADD_SUBSCRIPTION",
-                  selection: {
-                    itemId: configuringSub.id,
-                    itemType: "subscription",
-                    planId,
-                    monthlyPrice: price,
-                  },
-                });
-                setConfiguringId(null);
-              }}
-              onCancel={() => setConfiguringId(null)}
-            />
-          </motion.div>
+            itemName={configuringSub.name}
+            itemLogo={configuringSub.logo}
+            itemImage={configuringSub.image}
+            itemColor={configuringSub.color}
+            plans={configuringSub.plans}
+            onConfirm={(planId, price) => {
+              dispatch({
+                type: "ADD_SUBSCRIPTION",
+                selection: {
+                  itemId: configuringSub.id,
+                  itemType: "subscription",
+                  planId,
+                  monthlyPrice: price,
+                },
+              });
+              setConfiguringId(null);
+            }}
+            onCancel={() => setConfiguringId(null)}
+          />
         )}
       </AnimatePresence>
 
@@ -121,9 +114,9 @@ export default function SubscriptionPicker() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="mt-6 rounded-xl bg-slate-50 p-4"
+          className="mt-6 rounded-2xl border-2 border-[var(--border-soft)] bg-[var(--bg-warm)] p-4"
         >
-          <p className="mb-2 text-sm font-medium text-slate-500">
+          <p className="mb-2 text-sm font-bold text-[var(--text-secondary)]">
             Selected ({state.selectedSubscriptions.length}):
           </p>
           <div className="flex flex-wrap gap-2">
@@ -133,18 +126,18 @@ export default function SubscriptionPicker() {
               return (
                 <div
                   key={sel.itemId}
-                  className="flex items-center gap-2 rounded-full bg-white px-3 py-1.5 shadow-sm"
+                  className="flex items-center gap-2 rounded-xl border-2 border-[var(--border-soft)] bg-white px-3 py-1.5"
                 >
                   <BrandLogo item={sub} size={20} />
-                  <span className="text-sm text-slate-700">{sub.name}</span>
-                  <span className="text-sm font-medium text-amber-600">
+                  <span className="text-sm font-semibold text-[var(--text-primary)]">{sub.name}</span>
+                  <span className="text-sm font-bold text-[var(--accent)]">
                     {format(sel.monthlyPrice)}
                   </span>
                   <button
                     onClick={() =>
                       dispatch({ type: "REMOVE_SUBSCRIPTION", itemId: sel.itemId })
                     }
-                    className="text-slate-400 hover:text-red-500"
+                    className="text-[var(--text-muted)] hover:text-red-500 font-bold"
                   >
                     ×
                   </button>

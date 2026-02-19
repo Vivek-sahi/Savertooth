@@ -10,7 +10,7 @@ export default function CurrencySwitch() {
     <select
       value={currency.code}
       onChange={(e) => setCurrency(e.target.value as CurrencyCode)}
-      className="rounded-lg border border-slate-200 bg-white px-2.5 py-1.5 text-xs font-medium text-slate-600 focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500/30"
+      className="rounded-xl border-2 border-[var(--border-soft)] bg-white px-3 py-1.5 text-xs font-semibold text-[var(--text-secondary)] focus:border-[var(--accent)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)]/20"
     >
       {Object.values(currencies).map((c) => (
         <option key={c.code} value={c.code}>

@@ -1,74 +1,80 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { SavertoothLogoDark } from "@/components/shared/SavertoothLogo";
+
+function VisitorCount() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    const base = 14 + (new Date().getMinutes() % 11);
+    setCount(base);
+    const interval = setInterval(() => {
+      setCount((prev) => {
+        const delta = Math.random() > 0.5 ? 1 : -1;
+        return Math.max(8, Math.min(30, prev + delta));
+      });
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
+
+  if (count === 0) return null;
+  return <span>{count}</span>;
+}
+
+const trustedLogos = [
+  { name: "Netflix", domain: "netflix.com", color: "#E50914" },
+  { name: "Spotify", domain: "spotify.com", color: "#1DB954" },
+  { name: "Hotstar", domain: "hotstar.com", color: "#1F74EB" },
+  { name: "Jio", domain: "jio.com", color: "#0A3D91" },
+  { name: "Airtel", domain: "airtel.in", color: "#ED1C24" },
+  { name: "YouTube", domain: "youtube.com", color: "#FF0000" },
+];
 
 export default function Hero() {
   return (
-    <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6">
-      <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950" />
-      <div className="absolute inset-0">
-        <div className="absolute left-1/4 top-1/4 h-96 w-96 rounded-full bg-amber-500/10 blur-3xl" />
-        <div className="absolute right-1/4 bottom-1/3 h-80 w-80 rounded-full bg-amber-600/8 blur-3xl" />
+    <section className="relative overflow-hidden px-6 pb-20 pt-32 sm:pt-40">
+      {/* Playful background blobs */}
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute -top-20 -right-20 h-[500px] w-[500px] rounded-full bg-[var(--crayon-orange)] opacity-[0.06] blur-[100px]" />
+        <div className="absolute -bottom-20 -left-20 h-[400px] w-[400px] rounded-full bg-[var(--crayon-teal)] opacity-[0.06] blur-[100px]" />
+        <div className="absolute top-1/3 left-1/2 h-[300px] w-[300px] -translate-x-1/2 rounded-full bg-[var(--crayon-purple)] opacity-[0.04] blur-[80px]" />
       </div>
 
-      {/* Top bar logo */}
       <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
-        className="absolute top-6 left-6 z-20"
+        className="relative z-10 mx-auto max-w-3xl text-center"
       >
-        <SavertoothLogoDark size={36} />
-      </motion.div>
+        <div className="mb-6 inline-flex items-center gap-2 rounded-full border-2 border-[var(--border-soft)] bg-white px-4 py-2 shadow-[0_2px_12px_rgba(0,0,0,0.04)]">
+          <span className="flex h-2 w-2 rounded-full bg-[var(--crayon-green)] animate-pulse" />
+          <span className="text-sm font-semibold text-[var(--text-secondary)]">
+            <VisitorCount /> people on this page right now
+          </span>
+        </div>
 
-      <div className="relative z-10 mx-auto max-w-4xl text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/10 px-4 py-1.5 text-sm text-amber-400">
-            <span className="h-2 w-2 rounded-full bg-amber-400 animate-pulse" />
-            2,340 people saving this week
-          </div>
-        </motion.div>
-
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="mb-6 text-5xl font-bold leading-tight tracking-tight text-white sm:text-6xl lg:text-7xl"
-        >
-          You&apos;re paying{" "}
-          <span className="bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">
-            extra
+        <h1 className="mb-6 text-5xl font-extrabold leading-[1.1] tracking-tight text-[var(--text-primary)] sm:text-6xl lg:text-7xl">
+          Stop{" "}
+          <span className="relative inline-block">
+            <span className="relative z-10">overpaying</span>
+            <span className="absolute bottom-1 left-0 right-0 h-3 rounded-sm bg-[var(--crayon-yellow)] opacity-50 sm:h-4" />
           </span>{" "}
-          for your subscriptions.
-        </motion.h1>
+          for subscriptions
+        </h1>
 
-        <motion.p
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="mx-auto mb-10 max-w-2xl text-lg text-slate-400 sm:text-xl"
-        >
-          We find cheaper alternatives and curated packs for your subscriptions
-          and services. Same quality. Less money. It takes two minutes.
-        </motion.p>
+        <p className="mx-auto mb-10 max-w-xl text-lg leading-relaxed text-[var(--text-secondary)] sm:text-xl">
+          We analyze your recurring spend, find cheaper alternatives, and
+          surface curated packs — so you keep the same services and pay less.
+        </p>
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center"
-        >
+        <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
           <Link
             href="/analyze"
-            className="group flex h-14 items-center gap-2 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 px-8 text-lg font-bold text-white shadow-lg shadow-amber-500/25 transition-all hover:shadow-xl hover:shadow-amber-500/30 hover:scale-105"
+            className="group flex h-14 items-center gap-2 rounded-2xl bg-[var(--text-primary)] px-8 text-lg font-semibold text-white transition-all hover:bg-[#3d3d4a] active:scale-[0.98]"
           >
-            Show Me
+            Save my money
             <svg
               className="h-5 w-5 transition-transform group-hover:translate-x-1"
               fill="none"
@@ -85,31 +91,37 @@ export default function Hero() {
           </Link>
           <Link
             href="/knowledge"
-            className="flex h-14 items-center rounded-full border border-slate-700 px-8 text-lg font-medium text-slate-300 transition-all hover:border-slate-500 hover:text-white"
+            className="flex h-14 items-center rounded-2xl border-2 border-[var(--border-soft)] bg-white px-8 text-lg font-semibold text-[var(--text-primary)] shadow-[0_2px_12px_rgba(0,0,0,0.04)] transition-all hover:border-[var(--border-card)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.08)] hover:scale-[1.02]"
           >
-            Knowledge Base
+            Learn more
           </Link>
-        </motion.div>
+        </div>
+      </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="mt-20 grid grid-cols-3 gap-8 border-t border-slate-800 pt-10"
-        >
-          {[
-            { value: "₹1.8Cr+", label: "Saved by users" },
-            { value: "47K+", label: "Active members" },
-            { value: "23%", label: "Average savings" },
-          ].map((stat) => (
-            <div key={stat.label}>
-              <div className="text-2xl font-bold text-amber-400 sm:text-3xl">
-                {stat.value}
-              </div>
-              <div className="mt-1 text-sm text-slate-500">{stat.label}</div>
+      {/* Trusted-by logo bar */}
+      <div className="relative z-10 mx-auto mt-24 max-w-2xl">
+        <p className="mb-5 text-center text-xs font-bold uppercase tracking-[0.15em] text-[var(--text-muted)]">
+          Works with services you already use
+        </p>
+        <div className="flex flex-wrap items-center justify-center gap-6">
+          {trustedLogos.map((logo) => (
+            <div
+              key={logo.name}
+              className="flex items-center gap-2 rounded-xl border-2 border-[var(--border-soft)] bg-white px-3 py-2 shadow-[0_2px_8px_rgba(0,0,0,0.04)] transition-all hover:shadow-[0_4px_12px_rgba(0,0,0,0.08)] hover:scale-105"
+            >
+              <img
+                src={`https://www.google.com/s2/favicons?domain=${logo.domain}&sz=64`}
+                alt={logo.name}
+                width={20}
+                height={20}
+                className="rounded-sm"
+              />
+              <span className="text-xs font-semibold text-[var(--text-secondary)]">
+                {logo.name}
+              </span>
             </div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

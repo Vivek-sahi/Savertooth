@@ -49,7 +49,7 @@ export const services: ServiceProvider[] = [
     id: "bsnl-fiber",
     name: "BSNL Fiber",
     logo: "B",
-    image: "https://logo.clearbit.com/bsnl.co.in",
+    image: "https://www.google.com/s2/favicons?domain=bsnl.in&sz=128",
     color: "#1A8C3F",
     category: "internet",
     plans: [
@@ -103,7 +103,7 @@ export const services: ServiceProvider[] = [
     id: "bsnl-mobile",
     name: "BSNL Mobile",
     logo: "B",
-    image: "https://logo.clearbit.com/bsnl.co.in",
+    image: "https://www.google.com/s2/favicons?domain=bsnl.in&sz=128",
     color: "#1A8C3F",
     category: "mobile",
     plans: [
@@ -115,7 +115,7 @@ export const services: ServiceProvider[] = [
     id: "bescom",
     name: "BESCOM",
     logo: "B",
-    image: "https://logo.clearbit.com/bescom.karnataka.gov.in",
+    image: "https://www.google.com/s2/favicons?domain=bescom.karnataka.gov.in&sz=128",
     color: "#FF8C00",
     category: "electricity",
     plans: [

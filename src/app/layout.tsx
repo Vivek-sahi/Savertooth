@@ -1,17 +1,26 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { DM_Sans, DM_Mono, Rubik } from "next/font/google";
 import { WizardProvider } from "@/context/WizardContext";
 import { CurrencyProvider } from "@/context/CurrencyContext";
+import Navbar from "@/components/shared/Navbar";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const dmMono = DM_Mono({
+  variable: "--font-dm-mono",
   subsets: ["latin"],
+  weight: ["400", "500"],
+});
+
+const rubik = Rubik({
+  variable: "--font-brand",
+  subsets: ["latin"],
+  weight: ["700", "800", "900"],
 });
 
 export const metadata: Metadata = {
@@ -28,10 +37,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${dmSans.variable} ${dmMono.variable} ${rubik.variable} antialiased`}
       >
         <CurrencyProvider>
-          <WizardProvider>{children}</WizardProvider>
+          <WizardProvider>
+            <Navbar />
+            {children}
+          </WizardProvider>
         </CurrencyProvider>
       </body>
     </html>

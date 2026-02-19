@@ -44,7 +44,7 @@ export const subscriptions: Subscription[] = [
     id: "jiocinema",
     name: "JioCinema",
     logo: "J",
-    image: "https://logo.clearbit.com/jiocinema.com",
+    image: "https://www.google.com/s2/favicons?domain=jiohotstar.com&sz=128",
     color: "#E72079",
     category: "streaming",
     plans: [

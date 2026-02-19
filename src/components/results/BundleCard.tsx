@@ -16,7 +16,7 @@ function BundleItemLogo({ item }: { item: { name: string; logo: string; image: s
   if (imgError || !item.image) {
     return (
       <div
-        className="flex h-6 w-6 items-center justify-center rounded text-[10px] font-bold text-white"
+        className="flex h-6 w-6 items-center justify-center rounded-lg text-[10px] font-bold text-white"
         style={{ backgroundColor: item.color }}
       >
         {item.logo}
@@ -30,7 +30,7 @@ function BundleItemLogo({ item }: { item: { name: string; logo: string; image: s
       alt={item.name}
       width={24}
       height={24}
-      className="rounded bg-white object-contain p-0.5"
+      className="rounded-lg bg-white object-contain p-0.5"
       onError={() => setImgError(true)}
       loading="lazy"
     />
@@ -42,23 +42,27 @@ export default function BundleCard({ bundle, index }: BundleCardProps) {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 24 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.3 + index * 0.1 }}
-      className="relative rounded-2xl border-2 border-amber-200 bg-gradient-to-b from-amber-50 to-white p-6 shadow-lg shadow-amber-500/5"
+      whileHover={{ y: -4 }}
+      className="relative rounded-3xl border-2 border-[var(--border-soft)] bg-white p-6 shadow-[0_4px_20px_rgba(0,0,0,0.04)] transition-shadow hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)]"
     >
       {bundle.highlight && (
-        <span className="absolute -top-3 left-4 rounded-full bg-amber-500 px-3 py-1 text-xs font-bold text-white">
+        <span className="absolute -top-3 left-4 rounded-xl bg-[var(--text-primary)] px-3 py-1 text-xs font-semibold text-white">
           {bundle.highlight}
         </span>
       )}
 
       <div className="mb-4 flex items-start justify-between">
         <div>
-          <h4 className="text-lg font-bold text-slate-800">{bundle.name}</h4>
-          <p className="text-sm text-slate-500">{bundle.description}</p>
+          <h4 className="text-base font-extrabold text-[var(--text-primary)]">{bundle.name}</h4>
+          <p className="mt-0.5 text-sm text-[var(--text-secondary)]">{bundle.description}</p>
         </div>
-        <span className="shrink-0 rounded-full bg-amber-500 px-3 py-1 text-xs font-bold text-white">
+        <span
+          className="shrink-0 rounded-xl px-2.5 py-1 text-xs font-bold"
+          style={{ backgroundColor: "#e6f9f6", color: "var(--crayon-teal)" }}
+        >
           -{bundle.savingsPercent}%
         </span>
       </div>
@@ -67,10 +71,10 @@ export default function BundleCard({ bundle, index }: BundleCardProps) {
         {bundle.includedItems.map((item) => (
           <div
             key={item.name}
-            className="flex items-center gap-1.5 rounded-lg bg-white px-2.5 py-1.5 shadow-sm"
+            className="flex items-center gap-1.5 rounded-xl border-2 border-[var(--border-soft)] bg-[var(--bg-warm)] px-2.5 py-1.5"
           >
             <BundleItemLogo item={item} />
-            <span className="text-xs font-medium text-slate-600">
+            <span className="text-xs font-semibold text-[var(--text-secondary)]">
               {item.name}
             </span>
           </div>
@@ -78,16 +82,16 @@ export default function BundleCard({ bundle, index }: BundleCardProps) {
       </div>
 
       <div className="mb-5 flex items-end gap-3">
-        <span className="text-sm text-slate-400 line-through">
+        <span className="text-sm text-[var(--text-muted)] line-through">
           {format(bundle.retailPrice)}/mo
         </span>
-        <span className="text-2xl font-bold text-slate-800">
+        <span className="text-2xl font-extrabold text-[var(--text-primary)]">
           {format(bundle.groupPrice)}
         </span>
-        <span className="mb-0.5 text-sm text-slate-400">/mo</span>
+        <span className="mb-0.5 text-sm text-[var(--text-muted)]">/mo</span>
       </div>
 
-      <button className="w-full rounded-xl bg-amber-500 py-3 text-sm font-bold text-white transition-all hover:bg-amber-600 hover:shadow-lg">
+      <button className="w-full rounded-2xl bg-[var(--text-primary)] py-3 text-sm font-semibold text-white transition-colors hover:bg-[#3d3d4a] active:scale-[0.98]">
         Get This
       </button>
     </motion.div>

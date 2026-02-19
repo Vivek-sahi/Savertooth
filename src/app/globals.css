@@ -1,24 +1,69 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #0f172a;
+  /* Clay-inspired warm, playful palette */
+  --bg-cream: #fdf8f3;
+  --bg-warm: #faf5ee;
+  --bg-card: #ffffff;
+  --bg-dark: #1a1a2e;
+  --border-soft: #f0e6d8;
+  --border-card: #ede3d5;
+
+  /* Crayon color pops */
+  --crayon-orange: #ff6b35;
+  --crayon-coral: #ff8f6b;
+  --crayon-teal: #2ec4b6;
+  --crayon-purple: #7c5cfc;
+  --crayon-pink: #ff6b9d;
+  --crayon-yellow: #ffd166;
+  --crayon-green: #06d6a0;
+  --crayon-blue: #4ea8de;
+
+  /* Text */
+  --text-primary: #2d2d3a;
+  --text-secondary: #6b6b80;
+  --text-muted: #9e9eb0;
+
+  /* Brand */
+  --accent: #ff6b35;
+  --accent-hover: #e85d2c;
+  --background: var(--bg-cream);
+  --foreground: var(--text-primary);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-cream: var(--bg-cream);
+  --color-warm: var(--bg-warm);
+  --color-dark: var(--bg-dark);
+  --color-card: var(--bg-card);
+  --color-soft: var(--border-soft);
+  --color-accent: var(--accent);
+  --color-crayon-orange: var(--crayon-orange);
+  --color-crayon-coral: var(--crayon-coral);
+  --color-crayon-teal: var(--crayon-teal);
+  --color-crayon-purple: var(--crayon-purple);
+  --color-crayon-pink: var(--crayon-pink);
+  --color-crayon-yellow: var(--crayon-yellow);
+  --color-crayon-green: var(--crayon-green);
+  --color-crayon-blue: var(--crayon-blue);
+  --font-sans: var(--font-dm-sans);
+  --font-mono: var(--font-dm-mono);
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--bg-cream);
+  color: var(--text-primary);
   font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
 ::selection {
-  background-color: #f59e0b;
-  color: #ffffff;
+  background-color: #ff6b3540;
+  color: inherit;
 }

@@ -7,7 +7,6 @@ import { useWizard } from "@/context/WizardContext";
 import { calculateSavings } from "@/lib/savings";
 import ProgressBar from "@/components/shared/ProgressBar";
 import CurrencySwitch from "@/components/shared/CurrencySwitch";
-import SavertoothLogo from "@/components/shared/SavertoothLogo";
 import SubscriptionPicker from "./SubscriptionPicker";
 import ServicePicker from "./ServicePicker";
 import StackReview from "./StackReview";
@@ -54,15 +53,12 @@ export default function WizardShell() {
   }, [state.step, dispatch]);
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen pt-20">
       <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6">
-        <div className="mb-4 flex items-center justify-between">
-          <button onClick={() => router.push("/")} className="cursor-pointer">
-            <SavertoothLogo size={32} />
-          </button>
+        <div className="mb-4 flex items-center justify-end">
           <div className="flex items-center gap-3">
             <CurrencySwitch />
-            <span className="text-sm text-slate-400">
+            <span className="text-sm font-semibold text-[var(--text-muted)]">
               Step {state.step} of {STEPS.length}
             </span>
           </div>
@@ -76,7 +72,7 @@ export default function WizardShell() {
           />
         </div>
 
-        <div className="min-h-[500px] rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+        <div className="min-h-[500px] rounded-3xl border-2 border-[var(--border-soft)] bg-white p-6 shadow-[0_6px_30px_rgba(0,0,0,0.05)] sm:p-8">
           <AnimatePresence mode="wait">
             <motion.div
               key={state.step}
@@ -96,7 +92,7 @@ export default function WizardShell() {
           <button
             onClick={handleBack}
             disabled={state.step === 1}
-            className="flex h-12 items-center gap-2 rounded-xl border border-slate-200 px-6 font-medium text-slate-600 transition-all hover:bg-slate-100 disabled:opacity-0"
+            className="flex h-12 items-center gap-2 rounded-2xl border-2 border-[var(--border-soft)] bg-white px-6 font-semibold text-[var(--text-secondary)] shadow-[0_2px_10px_rgba(0,0,0,0.04)] transition-all hover:shadow-[0_4px_16px_rgba(0,0,0,0.08)] disabled:opacity-0"
           >
             <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
@@ -106,7 +102,7 @@ export default function WizardShell() {
           <button
             onClick={handleNext}
             disabled={!canProceed()}
-            className="flex h-12 items-center gap-2 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 px-8 font-bold text-white shadow-lg shadow-amber-500/25 transition-all hover:shadow-xl hover:scale-105 disabled:opacity-40 disabled:hover:scale-100 disabled:shadow-none"
+            className="flex h-12 items-center gap-2 rounded-2xl bg-[var(--text-primary)] px-8 font-semibold text-white transition-colors hover:bg-[#3d3d4a] active:scale-[0.98] disabled:opacity-30 disabled:hover:bg-[var(--text-primary)]"
           >
             {state.step === 3 ? "Analyze My Stack" : "Continue"}
             <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>

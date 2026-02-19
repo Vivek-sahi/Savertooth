@@ -6,7 +6,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useWizard } from "@/context/WizardContext";
 import { useCurrency } from "@/context/CurrencyContext";
 import CurrencySwitch from "@/components/shared/CurrencySwitch";
-import SavertoothLogo from "@/components/shared/SavertoothLogo";
 import SavingsHero from "@/components/results/SavingsHero";
 import SuggestionsPanel from "@/components/results/SuggestionsPanel";
 import PriceDropAlert from "@/components/retention/PriceDropAlert";
@@ -49,7 +48,7 @@ export default function ResultsPage() {
   if (!state.results) return null;
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen pt-20">
       <AnimatePresence mode="wait">
         {analyzing ? (
           <motion.div
@@ -57,28 +56,28 @@ export default function ResultsPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="flex min-h-screen flex-col items-center justify-center px-6"
+            className="flex min-h-[80vh] flex-col items-center justify-center px-6"
           >
             <motion.div
               animate={{ rotate: 360 }}
               transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-              className="mb-8 h-16 w-16 rounded-full border-4 border-slate-200 border-t-amber-500"
+              className="mb-8 h-14 w-14 rounded-2xl border-4 border-[var(--border-soft)] border-t-[var(--accent)]"
             />
-            <h2 className="mb-2 text-2xl font-bold text-slate-800">
+            <h2 className="mb-2 text-2xl font-extrabold text-[var(--text-primary)]">
               Analyzing your stack...
             </h2>
-            <p className="mb-6 text-slate-500">
+            <p className="mb-6 text-[var(--text-secondary)]">
               Comparing against 47,000+ plans
             </p>
             <div className="w-64">
-              <div className="h-2 w-full rounded-full bg-slate-200">
+              <div className="h-2.5 w-full rounded-full bg-[var(--border-soft)]">
                 <motion.div
-                  className="h-full rounded-full bg-gradient-to-r from-amber-400 to-orange-500"
+                  className="h-full rounded-full bg-[var(--accent)]"
                   animate={{ width: `${progress}%` }}
                   transition={{ duration: 0.3, ease: "easeOut" }}
                 />
               </div>
-              <p className="mt-2 text-center text-sm text-slate-400">
+              <p className="mt-2 text-center text-sm font-semibold text-[var(--text-muted)]">
                 {progress}%
               </p>
             </div>
@@ -90,23 +89,20 @@ export default function ResultsPage() {
             animate={{ opacity: 1 }}
             className="mx-auto max-w-3xl px-4 py-8 sm:px-6"
           >
-            <div className="mb-4 flex items-center justify-between">
-              <div className="flex items-center gap-4">
-                <button onClick={() => router.push("/")} className="cursor-pointer">
-                  <SavertoothLogo size={32} />
-                </button>
-                <button
-                  onClick={() => router.push("/analyze")}
-                  className="text-sm font-medium text-slate-500 hover:text-slate-700"
-                >
-                  ← Edit stack
-                </button>
-              </div>
+            <div className="mb-6 flex items-center justify-between">
+              <button
+                onClick={() => router.push("/analyze")}
+                className="flex items-center gap-1.5 rounded-xl border-2 border-[var(--border-soft)] bg-white px-3 py-1.5 text-sm font-semibold text-[var(--text-secondary)] transition-all hover:shadow-[0_2px_10px_rgba(0,0,0,0.06)]"
+              >
+                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+                </svg>
+                Edit stack
+              </button>
               <CurrencySwitch />
             </div>
 
             <div className="space-y-8">
-              {/* 1. Savings hero */}
               <SavingsHero
                 currentTotal={state.results.currentTotal}
                 optimizedTotal={state.results.optimizedTotal}
@@ -116,37 +112,33 @@ export default function ResultsPage() {
                 score={state.results.score}
               />
 
-              {/* 2. Savertooth Suggestions + collapsible reduce/more-value */}
               <SuggestionsPanel results={state.results} />
 
-              {/* 3. Price drop alerts (right after suggestions) */}
               <PriceDropAlert />
 
-              {/* 4. Sign up CTA */}
               {state.results.monthlySavings > 0 && (
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.6 }}
-                  className="rounded-2xl bg-gradient-to-r from-amber-500 to-orange-500 p-6 text-center text-white"
+                  className="rounded-3xl bg-[var(--bg-dark)] p-8 text-center text-white"
                 >
-                  <h3 className="mb-2 text-xl font-bold">
+                  <h3 className="mb-2 text-xl font-extrabold">
                     Ready to lock in these savings?
                   </h3>
-                  <p className="mb-4 text-sm text-white/80">
+                  <p className="mb-6 text-sm text-white/50">
                     Sign up to get personalized switching guides and exclusive
                     deals.
                   </p>
                   <button
                     onClick={() => router.push("/signup")}
-                    className="rounded-xl bg-white px-8 py-3 font-bold text-amber-600 shadow-lg transition-all hover:shadow-xl hover:scale-105"
+                    className="rounded-2xl bg-white px-8 py-3 font-semibold text-[var(--text-primary)] transition-colors hover:bg-white/90 active:scale-[0.98]"
                   >
                     Sign Up to Save {format(state.results.monthlySavings)}/mo
                   </button>
                 </motion.div>
               )}
 
-              {/* 5. Share */}
               <ShareSection
                 monthlySavings={state.results.monthlySavings}
                 score={state.results.score}

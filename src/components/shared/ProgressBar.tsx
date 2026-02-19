@@ -2,6 +2,8 @@
 
 import { motion } from "framer-motion";
 
+const stepColors = ["var(--crayon-orange)", "var(--crayon-teal)", "var(--crayon-purple)"];
+
 interface ProgressBarProps {
   currentStep: number;
   totalSteps: number;
@@ -11,28 +13,32 @@ interface ProgressBarProps {
 export default function ProgressBar({ currentStep, totalSteps, labels }: ProgressBarProps) {
   return (
     <div className="w-full">
-      <div className="mb-2 flex justify-between">
+      <div className="mb-3 flex justify-between">
         {labels.map((label, i) => {
           const stepNum = i + 1;
           const isActive = stepNum === currentStep;
           const isComplete = stepNum < currentStep;
+          const color = stepColors[i] || "var(--crayon-orange)";
           return (
-            <div key={i} className="flex flex-col items-center gap-1">
+            <div key={i} className="flex flex-col items-center gap-1.5">
               <div
-                className={`flex h-8 w-8 items-center justify-center rounded-full text-xs font-bold transition-all duration-300 ${
-                  isComplete
-                    ? "bg-amber-500 text-white"
-                    : isActive
-                      ? "bg-amber-500 text-white ring-4 ring-amber-500/20"
-                      : "bg-slate-200 text-slate-500"
-                }`}
+                className="flex h-8 w-8 items-center justify-center rounded-xl text-xs font-bold transition-all duration-300"
+                style={{
+                  backgroundColor: isComplete || isActive ? color : "var(--border-soft)",
+                  color: isComplete || isActive ? "#fff" : "var(--text-muted)",
+                }}
               >
-                {isComplete ? "✓" : stepNum}
+                {isComplete ? (
+                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                ) : (
+                  stepNum
+                )}
               </div>
               <span
-                className={`text-[10px] font-medium hidden sm:block ${
-                  isActive ? "text-amber-600" : "text-slate-400"
-                }`}
+                className="hidden text-[11px] font-semibold sm:block"
+                style={{ color: isActive ? color : "var(--text-muted)" }}
               >
                 {label}
               </span>
@@ -40,9 +46,10 @@ export default function ProgressBar({ currentStep, totalSteps, labels }: Progres
           );
         })}
       </div>
-      <div className="h-1.5 w-full rounded-full bg-slate-200">
+      <div className="h-2 w-full rounded-full bg-[var(--border-soft)]">
         <motion.div
-          className="h-full rounded-full bg-gradient-to-r from-amber-400 to-amber-500"
+          className="h-full rounded-full"
+          style={{ backgroundColor: stepColors[currentStep - 1] || "var(--crayon-orange)" }}
           initial={{ width: 0 }}
           animate={{
             width: `${((currentStep - 1) / (totalSteps - 1)) * 100}%`,
