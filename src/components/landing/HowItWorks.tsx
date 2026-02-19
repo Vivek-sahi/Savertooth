@@ -4,50 +4,50 @@ import { motion } from "framer-motion";
 
 const steps = [
   {
-    num: "01",
+    num: "1",
     title: "Pick your subscriptions",
     desc: "Select the services you pay for — streaming, music, phone, internet, and more.",
     color: "var(--crayon-orange)",
-    bgColor: "#fff0eb",
+    bg: "#fff0eb",
     icon: (
-      <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+      <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.2}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25H12" />
       </svg>
     ),
   },
   {
-    num: "02",
-    title: "We analyze your spend",
-    desc: "Our engine compares your stack against 47,000+ plans to find where you're overpaying.",
+    num: "2",
+    title: "We compare your plans",
+    desc: "Your stack is compared against thousands of plans to spot where you're overpaying.",
     color: "var(--crayon-teal)",
-    bgColor: "#e6f9f6",
+    bg: "#e6f9f6",
     icon: (
-      <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5M9 11.25v1.5M12 9v3.75m3-6v6" />
+      <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
       </svg>
     ),
   },
   {
-    num: "03",
+    num: "3",
     title: "See your savings",
-    desc: "Get a personalized report with cheaper alternatives, better-value options, and curated packs.",
+    desc: "Get a clear breakdown with better-value alternatives and potential savings.",
     color: "var(--crayon-purple)",
-    bgColor: "#f0ecfe",
+    bg: "#f0ecfe",
     icon: (
-      <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+      <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.2}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z" />
       </svg>
     ),
   },
   {
-    num: "04",
+    num: "4",
     title: "Switch and save",
-    desc: "One-tap access to Savertooth suggestions — switch, save, and track your savings over time.",
+    desc: "Use the insights to switch plans, drop unused services, and keep more money.",
     color: "var(--crayon-pink)",
-    bgColor: "#ffe6ef",
+    bg: "#ffe6ef",
     icon: (
-      <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
+      <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
     ),
   },
@@ -61,7 +61,7 @@ export default function HowItWorks() {
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-        className="mx-auto max-w-5xl"
+        className="mx-auto max-w-xl"
       >
         <div className="mb-16 text-center">
           <h2 className="mb-4 text-3xl font-extrabold text-[var(--text-primary)] sm:text-4xl">
@@ -72,32 +72,61 @@ export default function HowItWorks() {
           </p>
         </div>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {steps.map((step) => (
-            <div
-              key={step.num}
-              className="group rounded-3xl border-2 border-[var(--border-soft)] bg-white p-6 shadow-[0_4px_20px_rgba(0,0,0,0.04)] transition-all hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] hover:-translate-y-1"
-            >
-              <div
-                className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl transition-transform group-hover:scale-110 group-hover:rotate-3"
-                style={{ backgroundColor: step.bgColor, color: step.color }}
-              >
-                {step.icon}
-              </div>
-              <div
-                className="mb-2 text-xs font-bold uppercase tracking-wider"
-                style={{ color: step.color }}
-              >
-                Step {step.num}
-              </div>
-              <h3 className="mb-2 text-base font-bold text-[var(--text-primary)]">
-                {step.title}
-              </h3>
-              <p className="text-sm leading-relaxed text-[var(--text-secondary)]">
-                {step.desc}
-              </p>
-            </div>
-          ))}
+        <div className="relative">
+          {/* Rope/ladder — dashed center line */}
+          <div className="absolute left-7 top-0 bottom-0 w-0.5 border-l-[3px] border-dashed border-[var(--border-soft)]" />
+
+          <div className="space-y-10">
+            {steps.map((step, i) => {
+              const isEven = i % 2 === 0;
+              return (
+                <div key={step.num} className="relative flex items-start gap-5">
+                  {/* Node on the rope */}
+                  <div className="relative z-10 flex flex-col items-center">
+                    {/* Outer ring */}
+                    <div
+                      className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border-[3px] shadow-sm"
+                      style={{
+                        borderColor: step.color,
+                        backgroundColor: step.bg,
+                      }}
+                    >
+                      <div style={{ color: step.color }}>{step.icon}</div>
+                    </div>
+                    {/* Knot — small circle on the rope */}
+                    {i < steps.length - 1 && (
+                      <div
+                        className="mt-4 h-3 w-3 rounded-full border-2 border-white shadow-sm"
+                        style={{ backgroundColor: steps[i + 1].color }}
+                      />
+                    )}
+                  </div>
+
+                  {/* Content — alternates subtle bg */}
+                  <div
+                    className={`flex-1 rounded-2xl px-5 py-4 ${
+                      isEven ? "bg-[var(--bg-warm)]" : ""
+                    }`}
+                  >
+                    <div className="mb-1 flex items-center gap-2">
+                      <span
+                        className="text-xs font-bold uppercase tracking-wider"
+                        style={{ color: step.color }}
+                      >
+                        Step {step.num}
+                      </span>
+                    </div>
+                    <h3 className="text-lg font-bold text-[var(--text-primary)]">
+                      {step.title}
+                    </h3>
+                    <p className="mt-1 text-sm leading-relaxed text-[var(--text-secondary)]">
+                      {step.desc}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </motion.div>
     </section>

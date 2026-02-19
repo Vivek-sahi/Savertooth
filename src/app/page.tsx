@@ -67,33 +67,33 @@ function ResearchStrip() {
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
       >
-        <div className="mx-auto mb-10 max-w-2xl text-center">
-          <h2 className="mb-2 text-2xl font-extrabold text-[var(--text-primary)] sm:text-3xl">
-            Indians are overpaying for subscriptions
+        <div className="mx-auto mb-12 max-w-4xl text-center">
+          <h2 className="mb-3 text-3xl font-extrabold text-[var(--text-primary)] sm:text-4xl">
+            We are paying extra for our subscriptions.
           </h2>
           <p className="text-base text-[var(--text-secondary)]">
             Research shows most households pay for services they barely use.
           </p>
         </div>
-        <div className="mx-auto grid max-w-4xl grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {researchStats.map((stat) => (
             <div
               key={stat.label}
-              className="rounded-3xl border-2 border-[var(--border-soft)] bg-white p-5 shadow-[0_4px_16px_rgba(0,0,0,0.04)] transition-all hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(0,0,0,0.08)]"
+              className="rounded-3xl border-2 border-[var(--border-soft)] bg-white px-6 py-7 shadow-[0_4px_16px_rgba(0,0,0,0.04)] transition-all hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(0,0,0,0.08)]"
             >
               <div
-                className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl"
+                className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl"
                 style={{ backgroundColor: stat.bg, color: stat.color }}
               >
                 {stat.icon}
               </div>
-              <div className="text-2xl font-extrabold text-[var(--text-primary)]">
+              <div className="text-2xl font-extrabold text-[var(--text-primary)] sm:text-3xl">
                 {stat.value}
               </div>
-              <div className="mt-1 text-sm text-[var(--text-secondary)] leading-snug">
+              <div className="mt-2 text-[13px] text-[var(--text-secondary)] leading-relaxed">
                 {stat.label}
               </div>
-              <div className="mt-2 text-[10px] font-semibold text-[var(--text-muted)]">
+              <div className="mt-3 text-xs font-semibold text-[var(--text-muted)]">
                 {stat.source}
               </div>
             </div>
