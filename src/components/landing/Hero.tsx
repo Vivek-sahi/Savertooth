@@ -1,27 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-
-function VisitorCount() {
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    const base = 14 + (new Date().getMinutes() % 11);
-    setCount(base);
-    const interval = setInterval(() => {
-      setCount((prev) => {
-        const delta = Math.random() > 0.5 ? 1 : -1;
-        return Math.max(8, Math.min(30, prev + delta));
-      });
-    }, 4000);
-    return () => clearInterval(interval);
-  }, []);
-
-  if (count === 0) return null;
-  return <span>{count}</span>;
-}
 
 const trustedLogos = [
   { name: "Netflix", domain: "netflix.com", color: "#E50914" },
@@ -34,7 +14,7 @@ const trustedLogos = [
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden px-6 pb-20 pt-32 sm:pt-40">
+    <section className="relative overflow-hidden px-6 pb-20 pt-40 sm:pt-52">
       {/* Playful background blobs */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute -top-20 -right-20 h-[500px] w-[500px] rounded-full bg-[var(--crayon-orange)] opacity-[0.06] blur-[100px]" />
@@ -48,25 +28,18 @@ export default function Hero() {
         transition={{ duration: 0.5 }}
         className="relative z-10 mx-auto max-w-3xl text-center"
       >
-        <div className="mb-6 inline-flex items-center gap-2 rounded-full border-2 border-[var(--border-soft)] bg-white px-4 py-2 shadow-[0_2px_12px_rgba(0,0,0,0.04)]">
-          <span className="flex h-2 w-2 rounded-full bg-[var(--crayon-green)] animate-pulse" />
-          <span className="text-sm font-semibold text-[var(--text-secondary)]">
-            <VisitorCount /> people on this page right now
-          </span>
-        </div>
-
         <h1 className="mb-6 text-5xl font-extrabold leading-[1.1] tracking-tight text-[var(--text-primary)] sm:text-6xl lg:text-7xl">
           Stop{" "}
           <span className="relative inline-block">
             <span className="relative z-10">overpaying</span>
             <span className="absolute bottom-1 left-0 right-0 h-3 rounded-sm bg-[var(--crayon-yellow)] opacity-50 sm:h-4" />
           </span>{" "}
-          for subscriptions
+          for your subscriptions.
         </h1>
 
         <p className="mx-auto mb-10 max-w-xl text-lg leading-relaxed text-[var(--text-secondary)] sm:text-xl">
-          We analyse your subscriptions and find opportunities to save
-          money — while keeping the same services or upgrading to better plans.
+          See where you're overspending and discover better deals or
+          plans — same value, less money.
         </p>
 
         <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">

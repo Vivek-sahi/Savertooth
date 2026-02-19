@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Hero from "@/components/landing/Hero";
@@ -145,8 +146,32 @@ function PreFooterCTA() {
 }
 
 function Footer() {
+  const footerRef = useRef<HTMLElement>(null);
+  const hasCounted = useRef(false);
+  const [visitors, setVisitors] = useState(0);
+
+  useEffect(() => {
+    const base = 2847 + Math.floor(Math.random() * 200);
+    setVisitors(base);
+  }, []);
+
+  useEffect(() => {
+    if (!footerRef.current) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasCounted.current) {
+          hasCounted.current = true;
+          setVisitors((v) => v + 1);
+        }
+      },
+      { threshold: 0.5 }
+    );
+    observer.observe(footerRef.current);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <footer className="border-t-2 border-[var(--border-soft)] bg-white px-6 py-12">
+    <footer ref={footerRef} className="border-t-2 border-[var(--border-soft)] bg-white px-6 py-12">
       <div className="mx-auto flex max-w-5xl flex-col items-center gap-6 sm:flex-row sm:justify-between">
         <div>
           <p
@@ -171,8 +196,13 @@ function Footer() {
           </Link>
         </div>
       </div>
-      <div className="mx-auto mt-8 max-w-5xl text-center text-xs text-[var(--text-muted)]">
-        &copy; {new Date().getFullYear()} Savertooth
+      <div className="mx-auto mt-8 flex max-w-5xl flex-col items-center gap-2 text-xs text-[var(--text-muted)]">
+        {visitors > 0 && (
+          <p>
+            <span className="font-semibold text-[var(--text-secondary)]">{visitors.toLocaleString()}</span> people have checked their subscriptions
+          </p>
+        )}
+        <p>&copy; {new Date().getFullYear()} Savertooth</p>
       </div>
     </footer>
   );

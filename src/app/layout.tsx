@@ -26,7 +26,7 @@ const rubik = Rubik({
 export const metadata: Metadata = {
   title: "Savertooth — Stop Overpaying for Subscriptions",
   description:
-    "We analyse your subscriptions and find opportunities to save money — while keeping the same services or upgrading to better plans.",
+    "See where you're overspending and discover better deals or plans — same value, less money.",
 };
 
 export default function RootLayout({
