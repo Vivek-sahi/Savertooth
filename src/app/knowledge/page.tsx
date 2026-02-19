@@ -293,9 +293,9 @@ export default function KnowledgePage() {
           </p>
           <p className="mb-4 text-base leading-relaxed text-[var(--text-secondary)]">
             Savertooth looks at your subscription stack, compares it against
-            thousands of plans, finds cheaper alternatives and same-provider
-            downgrades you didn&apos;t know existed, and surfaces bundles that
-            combine what you already use at a lower price.
+            thousands of plans, finds cheaper alternatives, discovers hidden
+            perks you didn&apos;t know existed, and shows you exactly where
+            you&apos;re overspending.
           </p>
           <p className="text-base leading-relaxed text-[var(--text-secondary)]">
             It takes two minutes. No sign-up required. You just pick what you

@@ -9,10 +9,13 @@ import { useCurrency } from "@/context/CurrencyContext";
 import LogoGrid, { BrandLogo } from "@/components/shared/LogoGrid";
 import PriceInput from "@/components/shared/PriceInput";
 
-const categories: { key: ServiceCategory | "all"; label: string }[] = [
+const categories: { key: ServiceCategory | "all" | "popular"; label: string }[] = [
+  { key: "popular", label: "Popular" },
   { key: "all", label: "All" },
   { key: "internet", label: "WiFi / Internet" },
-  { key: "mobile", label: "Phone / Mobile" },
+  { key: "mobile", label: "Phone / Prepaid" },
+  { key: "mobile_postpaid", label: "Postpaid" },
+  { key: "dth", label: "DTH / TV" },
   { key: "electricity", label: "Electricity" },
   { key: "credit_card", label: "Credit Cards" },
   { key: "gym", label: "Gym" },
@@ -22,7 +25,7 @@ const categories: { key: ServiceCategory | "all"; label: string }[] = [
 export default function ServicePicker() {
   const { state, dispatch } = useWizard();
   const { format } = useCurrency();
-  const [activeCategory, setActiveCategory] = useState<ServiceCategory | "all">("all");
+  const [activeCategory, setActiveCategory] = useState<ServiceCategory | "all" | "popular">("popular");
   const [configuringId, setConfiguringId] = useState<string | null>(null);
 
   const selectedIds = useMemo(
@@ -34,7 +37,9 @@ export default function ServicePicker() {
     () =>
       activeCategory === "all"
         ? services
-        : services.filter((s) => s.category === activeCategory),
+        : activeCategory === "popular"
+          ? services.filter((s) => s.popular)
+          : services.filter((s) => s.category === activeCategory),
     [activeCategory]
   );
 

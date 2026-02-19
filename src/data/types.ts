@@ -6,14 +6,17 @@ export type SubscriptionCategory =
   | "news"
   | "fitness"
   | "cloud"
-  | "vpn";
+  | "vpn"
+  | "food"
+  | "lifestyle";
 
 export type ServiceCategory =
   | "internet"
   | "mobile"
+  | "mobile_postpaid"
+  | "dth"
   | "electricity"
   | "credit_card"
-  | "debit_card"
   | "insurance"
   | "gym";
 
@@ -31,6 +34,7 @@ export interface Plan {
   name: string;
   monthlyPrice: number;
   features?: string[];
+  isPopular?: boolean;
 }
 
 export interface Subscription {
@@ -41,6 +45,7 @@ export interface Subscription {
   color: string;
   category: SubscriptionCategory;
   plans: Plan[];
+  popular?: boolean;
 }
 
 export interface ServiceProvider {
@@ -51,6 +56,23 @@ export interface ServiceProvider {
   color: string;
   category: ServiceCategory;
   plans: Plan[];
+  popular?: boolean;
+}
+
+export interface Perk {
+  sourceId: string;
+  sourceType: "service" | "subscription";
+  planIds: string[];
+  includesSubscription: string;
+  includedPlanId: string;
+  note: string;
+}
+
+export interface CategoryBenchmark {
+  category: SubscriptionCategory | ServiceCategory;
+  avgMonthlySpend: number;
+  avgItemCount: number;
+  source: string;
 }
 
 export interface UserSelection {
@@ -61,7 +83,7 @@ export interface UserSelection {
 }
 
 export interface SavingSuggestion {
-  type: "cheaper" | "more_value" | "bundle";
+  type: "hidden_perk" | "benchmark" | "cheaper" | "category_overspend";
   currentItemId: string;
   currentItemName: string;
   currentPrice: number;
@@ -70,17 +92,18 @@ export interface SavingSuggestion {
   suggestedPrice: number;
   savingsPerMonth: number;
   reason: string;
+  perkNote?: string;
 }
 
-export interface Bundle {
-  id: string;
-  name: string;
-  description: string;
-  includedItems: { name: string; logo: string; image: string; color: string }[];
-  retailPrice: number;
-  groupPrice: number;
-  savingsPercent: number;
-  highlight?: string;
+export interface CategoryInsight {
+  category: string;
+  categoryLabel: string;
+  totalSpend: number;
+  benchmarkSpend: number;
+  itemCount: number;
+  benchmarkCount: number;
+  overSpend: number;
+  recommendation: string;
 }
 
 export interface SavingsResult {
@@ -91,7 +114,7 @@ export interface SavingsResult {
   savingsPercent: number;
   score: number;
   suggestions: SavingSuggestion[];
-  bundles: Bundle[];
+  categoryInsights: CategoryInsight[];
 }
 
 export interface WizardState {

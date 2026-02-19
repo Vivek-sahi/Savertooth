@@ -27,13 +27,6 @@ function AnimatedNumber({ value, formatter }: { value: number; formatter: (v: nu
   return <span>{formatter(displayed)}</span>;
 }
 
-const statColors = [
-  { bg: "#fff0eb", color: "var(--crayon-orange)" },
-  { bg: "#e6f9f6", color: "var(--crayon-teal)" },
-  { bg: "#f0ecfe", color: "var(--crayon-purple)" },
-  { bg: "#ffe6ef", color: "var(--crayon-pink)" },
-];
-
 export default function SavingsHero({
   currentTotal,
   optimizedTotal,
@@ -54,33 +47,17 @@ export default function SavingsHero({
       {hasSavings ? (
         <div className="rounded-3xl bg-[var(--bg-dark)] p-8 text-white sm:p-10">
           <p className="mb-3 text-sm font-semibold text-white/40">
-            We found savings for you
+            You can save up to
           </p>
-          <div className="mb-8 flex items-end gap-3">
+          <div className="flex items-end gap-3">
             <span className="text-5xl font-extrabold sm:text-6xl">
               <AnimatedNumber value={monthlySavings} formatter={format} />
             </span>
             <span className="mb-2 text-lg text-white/40">/month</span>
           </div>
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-            {[
-              { label: "Current spend", value: `${format(currentTotal)}/mo` },
-              { label: "Optimized", value: `${format(optimizedTotal)}/mo` },
-              { label: "Annual savings", value: format(annualSavings) },
-              { label: "Savings", value: `${savingsPercent}%` },
-            ].map((stat, i) => (
-              <div
-                key={stat.label}
-                className="rounded-2xl p-3"
-                style={{ backgroundColor: statColors[i].bg + "20" }}
-              >
-                <p className="text-xs text-white/40">{stat.label}</p>
-                <p className="mt-1 text-lg font-extrabold" style={{ color: statColors[i].color }}>
-                  {stat.value}
-                </p>
-              </div>
-            ))}
-          </div>
+          <p className="mt-3 text-base text-white/50">
+            That&apos;s <span className="font-extrabold text-white">{savingsPercent}%</span> of your {format(currentTotal)}/mo spend, or <span className="font-extrabold text-white">{format(annualSavings)}/year</span>.
+          </p>
         </div>
       ) : (
         <div className="rounded-3xl bg-[var(--bg-dark)] p-8 text-white sm:p-10">

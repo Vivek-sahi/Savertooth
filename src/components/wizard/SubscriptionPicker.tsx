@@ -9,7 +9,8 @@ import { useCurrency } from "@/context/CurrencyContext";
 import LogoGrid, { BrandLogo } from "@/components/shared/LogoGrid";
 import PriceInput from "@/components/shared/PriceInput";
 
-const categories: { key: SubscriptionCategory | "all"; label: string }[] = [
+const categories: { key: SubscriptionCategory | "all" | "popular"; label: string }[] = [
+  { key: "popular", label: "Popular" },
   { key: "all", label: "All" },
   { key: "streaming", label: "Streaming" },
   { key: "music", label: "Music" },
@@ -18,12 +19,14 @@ const categories: { key: SubscriptionCategory | "all"; label: string }[] = [
   { key: "news", label: "News" },
   { key: "fitness", label: "Fitness" },
   { key: "cloud", label: "Cloud" },
+  { key: "food", label: "Food & Delivery" },
+  { key: "lifestyle", label: "Lifestyle" },
 ];
 
 export default function SubscriptionPicker() {
   const { state, dispatch } = useWizard();
   const { format } = useCurrency();
-  const [activeCategory, setActiveCategory] = useState<SubscriptionCategory | "all">("all");
+  const [activeCategory, setActiveCategory] = useState<SubscriptionCategory | "all" | "popular">("popular");
   const [configuringId, setConfiguringId] = useState<string | null>(null);
 
   const selectedIds = useMemo(
@@ -35,7 +38,9 @@ export default function SubscriptionPicker() {
     () =>
       activeCategory === "all"
         ? subscriptions
-        : subscriptions.filter((s) => s.category === activeCategory),
+        : activeCategory === "popular"
+          ? subscriptions.filter((s) => s.popular)
+          : subscriptions.filter((s) => s.category === activeCategory),
     [activeCategory]
   );
 
