@@ -11,7 +11,7 @@ import SubscriptionPicker from "./SubscriptionPicker";
 import ServicePicker from "./ServicePicker";
 import StackReview from "./StackReview";
 
-const STEPS = ["Subscriptions", "Services", "Review"];
+const STEPS = ["My Subscriptions", "My Services", "Review"];
 
 const analyzingMessages = [
   "Scanning your subscriptions…",

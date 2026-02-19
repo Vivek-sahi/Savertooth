@@ -156,9 +156,6 @@ export default function StackReview() {
           <div className="rounded-xl bg-white/10 px-3 py-1.5 text-xs font-semibold text-white/70">
             {svcCount} service{svcCount !== 1 ? "s" : ""}
           </div>
-          <div className="rounded-xl bg-white/10 px-3 py-1.5 text-xs font-semibold text-white/70">
-            {format(total / allItems.length)} avg/item
-          </div>
         </div>
       </motion.div>
 

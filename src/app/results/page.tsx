@@ -4,7 +4,6 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { useWizard } from "@/context/WizardContext";
-import { useCurrency } from "@/context/CurrencyContext";
 import CurrencySwitch from "@/components/shared/CurrencySwitch";
 import SavingsHero from "@/components/results/SavingsHero";
 import SuggestionsPanel from "@/components/results/SuggestionsPanel";
@@ -13,7 +12,6 @@ import ShareSection from "@/components/results/ShareSection";
 
 export default function ResultsPage() {
   const { state } = useWizard();
-  const { format } = useCurrency();
   const router = useRouter();
 
   useEffect(() => {
@@ -59,28 +57,6 @@ export default function ResultsPage() {
 
               <PriceDropAlert />
 
-              {state.results.monthlySavings > 0 && (
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.6 }}
-                  className="rounded-3xl bg-[var(--bg-dark)] p-8 text-center text-white"
-                >
-                  <h3 className="mb-2 text-xl font-extrabold">
-                    Ready to lock in these savings?
-                  </h3>
-                  <p className="mb-6 text-sm text-white/50">
-                    Sign up to get personalized switching guides and exclusive
-                    deals.
-                  </p>
-                  <button
-                    onClick={() => router.push("/signup")}
-                    className="rounded-2xl bg-white px-8 py-3 font-semibold text-[var(--text-primary)] transition-colors hover:bg-white/90 active:scale-[0.98]"
-                  >
-                    Sign Up to Save {format(state.results.monthlySavings)}/mo
-                  </button>
-                </motion.div>
-              )}
 
               <ShareSection
                 monthlySavings={state.results.monthlySavings}

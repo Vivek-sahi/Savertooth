@@ -65,8 +65,8 @@ export default function Hero() {
         </h1>
 
         <p className="mx-auto mb-10 max-w-xl text-lg leading-relaxed text-[var(--text-secondary)] sm:text-xl">
-          We analyze your recurring spend, find cheaper alternatives, and
-          surface curated packs — so you keep the same services and pay less.
+          We analyse your subscriptions and find opportunities to save
+          money — while keeping the same services or upgrading to better plans.
         </p>
 
         <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">

@@ -57,11 +57,10 @@ export default function ServicePicker() {
         className="mb-6"
       >
         <h2 className="mb-2 text-2xl font-extrabold text-[var(--text-primary)]">
-          Your essential services
+          Services
         </h2>
         <p className="text-[var(--text-secondary)]">
-          These are the big-ticket items — internet, phone, utilities. This is
-          where the real savings live.
+          Select your services and their plans. Providers often have deals we can find — the more you add, the more you save.
         </p>
       </motion.div>
 

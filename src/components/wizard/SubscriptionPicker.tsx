@@ -61,8 +61,7 @@ export default function SubscriptionPicker() {
           Pick your subscriptions
         </h2>
         <p className="text-[var(--text-secondary)]">
-          Select everything you&apos;re currently paying for. We&apos;ll find where you can
-          save.
+          Select your subscriptions and their plans.
         </p>
       </motion.div>
 
