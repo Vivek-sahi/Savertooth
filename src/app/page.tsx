@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import Hero from "@/components/landing/Hero";
 import HowItWorks from "@/components/landing/HowItWorks";
-import SocialProof from "@/components/landing/SocialProof";
+
 
 const researchStats = [
   {
@@ -214,7 +214,6 @@ export default function Home() {
       <Hero />
       <ResearchStrip />
       <HowItWorks />
-      <SocialProof />
       <PreFooterCTA />
       <Footer />
     </main>
